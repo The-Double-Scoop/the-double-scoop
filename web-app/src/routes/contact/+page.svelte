@@ -41,3 +41,23 @@
 		}
 	];
 </script>
+
+<PageContainer>
+	<header>
+		<Nav />
+	</header>
+	<h1 class="pb-5 text-4xl">Meet the Team</h1>
+
+	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+		{#each members as member (member.name)}
+			<div
+				class="bg-white shadow-md p-4 rounded-lg"
+				style="border: {member.border} solid 2px; background-color: {member.background};"
+			>
+				<img src={member.image} alt={member.name} class="w-full h-auto" />
+				<h2 class="text-xl font-semibold mt-2">{member.name}</h2>
+				<p class="text-gray-600">{member.role}</p>
+			</div>
+		{/each}
+	</div>
+</PageContainer>
