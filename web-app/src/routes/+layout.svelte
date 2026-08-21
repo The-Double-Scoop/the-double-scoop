@@ -5,7 +5,5 @@
 
 <div class="min-h-[100vh] flex flex-col justify-between">
 	<slot />
-	<div class="justify-self-end">
-		<Footer />
-	</div>
+	<Footer />
 </div>
