@@ -8,20 +8,20 @@ export async function load({ url }) {
 	}
 
 	const { data, error } = await supabase.rpc('get_data');
-	// .ilike('name', `%${search_term}%`);
-	// .order(filter, { ascending: false, nullsFirst: false })
-	// .order(filter, { ascending: false, nullsFirst: false });
+
+	if (error || !data) {
+		console.error('Supabase get_data failed:', error);
+		return { articlesGroups: [] };
+	}
 
 	let max_topic = -1;
 	for (let i = 0; i < data.length; i++) {
 		max_topic = Math.max(max_topic, data[i]['topic']);
 	}
 
-	let groupedArticles = []; //Array.from(Array(max_topic + 1), () => []);
-
+	let groupedArticles = [];
 	for (let i = 0; i < max_topic + 1; i++) {
 		let articles = data.filter((article) => article['topic'] == i);
-
 		if (articles.length) {
 			let firstArticle = articles[0];
 			groupedArticles.push({
